@@ -1,5 +1,181 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>我的博客 - 分享技术与生活</title><meta name="author" content="你的名字"><meta name="copyright" content="你的名字"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一个技术博客，记录学习与成长">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我的博客">
+<meta property="og:url" content="https://chadsuo.github.io/suoliang0726.github.io/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="一个技术博客，记录学习与成长">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chadsuo.github.io/suoliang0726.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="你的名字">
+<meta property="article:tag" content="博客,技术,学习,Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chadsuo.github.io/suoliang0726.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/suoliang0726.github.io/img/favicon.png"><link rel="canonical" href="https://chadsuo.github.io/suoliang0726.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/suoliang0726.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-block content
-  include ./includes/mixins/indexPostUI.pug
-  +indexPostUI
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/suoliang0726.github.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '我的博客',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/suoliang0726.github.io/atom.xml" title="我的博客" type="application/atom+xml">
+</head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/suoliang0726.github.io/"><span class="site-name">我的博客</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">我的博客</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2025/09/22/%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD/" title="测试自动生成功能">测试自动生成功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-09-21T19:10:17.000Z" title="发表于 2025-09-22 03:10:17">2025-09-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E6%B5%8B%E8%AF%95/">技术测试</a></span></div><div class="content">测试自动生成功能这是一篇测试文章，用来演示Hexo的自动生成功能。 🎯 测试内容标签测试这篇文章设置了以下标签：  测试 自动生成   Hexo功能  分类测试这篇文章属于”技术测试”分类。 📊 自动生成说明当你部署这篇文章后，Hexo会自动：  更新标签云：添加”测试”、”自动生成”、”Hexo功能”三个标签 更新分类页面：在”技术测试”分类下显示这篇文章 更新归档页面：在2025年9月归档中显示这篇文章 更新首页：在最新文章列表中显示这篇文章  🚀 部署测试现在让我们部署这篇文章，看看自动生成的效果： 1hexo clean &amp;&amp; hexo g -d   这就是Hexo的强大之处 - 一切都是自动的！ ✨ </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2025/09/22/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2025-09-21T18:16:18.028Z" title="发表于 2025-09-22 02:16:18">2025-09-22</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2024/09/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E9%A1%B9%E7%9B%AE/" title="我的第一个React项目">我的第一个React项目</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T16:00:00.000Z" title="发表于 2024-09-23 00:00:00">2024-09-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/">项目分享</a></span></div><div class="content">我的第一个React项目🎯 项目背景作为一个前端新手，我决定用React来构建我的第一个完整的Web应用。经过深思熟虑，我选择了一个个人任务管理系统作为我的第一个项目。 项目目标：  学习React基础概念 掌握组件化开发 实践状态管理 体验现代前端开发流程  🛠️ 技术栈选择核心技术 React 18 - 前端框架 JavaScript ES6+ - 编程语言 CSS3 - 样式设计 LocalStorage - 数据持久化  开发工具 Create React App - 项目脚手架 VS Code - 代码编辑器 Chrome DevTools - 调试工具 Git - 版本控制  📋 功能需求核心功能 任务管理  添加新任务 编辑任务内容 删除任务 标记完成状态   分类管理  创建任务分类 按分类筛选任务 分类颜色标识   数据持久化  本地存储任务数据 页面刷新后数据不丢失    扩展功能 任务优先级设置 任务截止日期 任务搜索功能 数据统计展示  🏗️ 项目结构1234567891011121314151617181920212223my-react-tod...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2024/09/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="前端开发学习路线">前端开发学习路线</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T15:00:00.000Z" title="发表于 2024-09-22 23:00:00">2024-09-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></span></div><div class="content">前端开发学习路线🎯 学习目标成为一名合格的前端开发工程师，需要掌握以下核心技能：  HTML&#x2F;CSS：网页结构和样式 JavaScript：编程语言基础 框架&#x2F;库：React、Vue、Angular等 工程化工具：Webpack、Vite、npm等 版本控制：Git使用 部署运维：CI&#x2F;CD、服务器部署  📚 第一阶段：基础入门HTML基础学习内容：  HTML标签和属性 语义化标签 表单处理 多媒体元素  推荐资源：  MDN HTML文档 W3School HTML教程  实践项目： 12345678910111213141516171819202122232425262728293031&lt;!DOCTYPE html&gt;&lt;html lang=&quot;zh-CN&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-widt...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2024/09/22/Markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" title="Markdown语法完全指南">Markdown语法完全指南</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T14:00:00.000Z" title="发表于 2024-09-22 22:00:00">2024-09-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></span></div><div class="content">Markdown语法完全指南📖 什么是Markdown？Markdown是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成有效的HTML文档。 优点：  语法简单，学习成本低 纯文本格式，兼容性好 支持多种输出格式 被广泛支持（GitHub、GitLab、Hexo等）  🎯 基础语法标题Markdown支持6级标题，使用 # 符号： 123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题  效果： 一级标题二级标题三级标题四级标题五级标题六级标题段落和换行段落之间用空行分隔： 123这是第一个段落。这是第二个段落。  换行：在行末添加两个空格，或者使用空行。 强调1234**粗体文字***斜体文字****粗斜体文字***~~删除线文字~~  效果：  粗体文字 斜体文字 粗斜体文字 删除线文字  列表无序列表12345- 项目1- 项目2  - 子项目2.1  - 子项目2.2- 项目3  效果：  项目1 项目2 子项目2.1 子项目2.2   项目3  有序列表123451. 第一项2....</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2024/09/22/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" title="程序员的生活感悟">程序员的生活感悟</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T13:00:00.000Z" title="发表于 2024-09-22 21:00:00">2024-09-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></span></div><div class="content">程序员的生活感悟🌅 清晨的代码时光每天早上醒来，第一件事就是打开电脑，查看昨晚提交的代码是否通过了CI&#x2F;CD。这已经成为了一种习惯，就像刷牙洗脸一样自然。 代码如诗，bug如歌。每一个bug都是成长的机会，每一次debug都是思维的锻炼。 💻 键盘上的舞蹈编程不仅仅是敲代码，更是一种艺术。当手指在键盘上飞舞时，就像在演奏一首美妙的乐曲。 12345678910111213// 优雅的代码就像诗一样const life = &#123;  morning: () =&gt; drinkCoffee(),  afternoon: () =&gt; writeCode(),  evening: () =&gt; readBooks(),  night: () =&gt; dream()&#125;;// 让生活充满诗意life.morning();life.afternoon();life.evening();life.night();  🤔 思考的力量为什么选择编程？ 创造的力量：从无到有，创造数字世界 逻辑的美感：严谨的逻辑思维训练 持续学习：技术更新快，永远有新的...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2024/09/22/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%BF%83%E5%BE%97/" title="Hexo博客搭建心得">Hexo博客搭建心得</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T12:00:00.000Z" title="发表于 2024-09-22 20:00:00">2024-09-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></span></div><div class="content">Hexo博客搭建心得🎯 为什么选择Hexo？在众多静态网站生成器中，我最终选择了Hexo，主要原因包括：  快速生成：基于Node.js，生成速度极快 Markdown支持：原生支持Markdown语法，写作体验佳 主题丰富：拥有大量精美的主题可供选择 插件生态：丰富的插件系统，功能扩展性强 部署简单：可以轻松部署到GitHub Pages、Netlify等平台  🛠️ 搭建过程环境准备1234# 安装Node.js (推荐LTS版本)# 安装Git# 全局安装Hexo CLInpm install -g hexo-cli  项目初始化123456# 创建博客项目hexo init my-blogcd my-blog# 安装依赖npm install  基础配置编辑 _config.yml 文件，配置基本信息： 1234567# Sitetitle: 我的博客subtitle: &#x27;分享技术与生活&#x27;description: &#x27;一个技术博客，记录学习与成长&#x27;author: 你的名字language: zh-CNtimezone: &#x27...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/suoliang0726.github.io/2024/09/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="我的第一篇文章">我的第一篇文章</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-22T10:00:00.000Z" title="发表于 2024-09-22 18:00:00">2024-09-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></span></div><div class="content">欢迎来到我的博客！这是我的第一篇文章，使用 Hexo 搭建的博客。 🎉 博客功能特点 快速生成：Hexo 可以快速生成静态文件 Markdown 支持：支持 Markdown 语法编写文章 主题丰富：有丰富的主题可以选择 插件系统：强大的插件系统扩展功能  📝 常用命令创建新文章1hexo new &quot;文章标题&quot;  启动本地服务器123hexo server# 或者简写hexo s  生成静态文件123hexo generate# 或者简写hexo g  部署到远程123hexo deploy# 或者简写hexo d  🚀 下一步计划 完善博客内容：添加更多技术文章 优化主题配置：自定义主题样式 部署到 GitHub Pages：让更多人看到我的博客 添加评论系统：与读者互动交流  💡 学习心得使用 Hexo 搭建博客的过程让我学到了：  静态网站生成器的原理 Markdown 语法的使用 Git 版本控制的重要性 前端部署的基本流程   感谢阅读！如果你有任何问题或建议，欢迎在评论区留言。🎯 </div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/suoliang0726.github.io/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/suoliang0726.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">你的名字</div><div class="author-info-description">一个技术博客，记录学习与成长</div><div class="site-data"><a href="/suoliang0726.github.io/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/suoliang0726.github.io/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/suoliang0726.github.io/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/suoliang0726.github.io/2025/09/22/%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD/" title="测试自动生成功能">测试自动生成功能</a><time datetime="2025-09-21T19:10:17.000Z" title="发表于 2025-09-22 03:10:17">2025-09-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/suoliang0726.github.io/2025/09/22/hello-world/" title="Hello World">Hello World</a><time datetime="2025-09-21T18:16:18.028Z" title="发表于 2025-09-22 02:16:18">2025-09-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/suoliang0726.github.io/2024/09/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E9%A1%B9%E7%9B%AE/" title="我的第一个React项目">我的第一个React项目</a><time datetime="2024-09-22T16:00:00.000Z" title="发表于 2024-09-23 00:00:00">2024-09-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/suoliang0726.github.io/2024/09/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" title="前端开发学习路线">前端开发学习路线</a><time datetime="2024-09-22T15:00:00.000Z" title="发表于 2024-09-22 23:00:00">2024-09-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/suoliang0726.github.io/2024/09/22/Markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" title="Markdown语法完全指南">Markdown语法完全指南</a><time datetime="2024-09-22T14:00:00.000Z" title="发表于 2024-09-22 22:00:00">2024-09-22</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/suoliang0726.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">学习笔记</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">技术分享</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">技术教程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E6%B5%8B%E8%AF%95/"><span class="card-category-list-name">技术测试</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/suoliang0726.github.io/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/"><span class="card-category-list-name">生活随笔</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/suoliang0726.github.io/categories/%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/"><span class="card-category-list-name">项目分享</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/suoliang0726.github.io/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 1.1em; color: #999">生活感悟</a> <a href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 1.1em; color: #999">技术</a> <a href="/suoliang0726.github.io/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.5em; color: #99a9bf">博客</a> <a href="/suoliang0726.github.io/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 1.1em; color: #999">语法</a> <a href="/suoliang0726.github.io/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.5em; color: #99a9bf">前端开发</a> <a href="/suoliang0726.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 1.1em; color: #999">程序员</a> <a href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 1.1em; color: #999">技术分享</a> <a href="/suoliang0726.github.io/tags/%E6%80%9D%E8%80%83/" style="font-size: 1.1em; color: #999">思考</a> <a href="/suoliang0726.github.io/tags/%E5%86%99%E4%BD%9C/" style="font-size: 1.1em; color: #999">写作</a> <a href="/suoliang0726.github.io/tags/%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" style="font-size: 1.1em; color: #999">自动生成</a> <a href="/suoliang0726.github.io/tags/React/" style="font-size: 1.5em; color: #99a9bf">React</a> <a href="/suoliang0726.github.io/tags/JavaScript/" style="font-size: 1.1em; color: #999">JavaScript</a> <a href="/suoliang0726.github.io/tags/%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/" style="font-size: 1.1em; color: #999">项目分享</a> <a href="/suoliang0726.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 1.1em; color: #999">学习记录</a> <a href="/suoliang0726.github.io/tags/Markdown/" style="font-size: 1.1em; color: #999">Markdown</a> <a href="/suoliang0726.github.io/tags/%E6%88%90%E9%95%BF/" style="font-size: 1.1em; color: #999">成长</a> <a href="/suoliang0726.github.io/tags/Hexo/" style="font-size: 1.5em; color: #99a9bf">Hexo</a> <a href="/suoliang0726.github.io/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">测试</a> <a href="/suoliang0726.github.io/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/suoliang0726.github.io/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" style="font-size: 1.1em; color: #999">静态网站</a> <a href="/suoliang0726.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 1.1em; color: #999">学习路线</a> <a href="/suoliang0726.github.io/tags/Hexo%E5%8A%9F%E8%83%BD/" style="font-size: 1.1em; color: #999">Hexo功能</a> <a href="/suoliang0726.github.io/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.1em; color: #999">教程</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/suoliang0726.github.io/archives/2025/09/">
+            <span class="card-archive-list-date">
+              九月 2025
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/suoliang0726.github.io/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">8</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-09-21T19:15:54.088Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By 你的名字</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/suoliang0726.github.io/js/utils.js"></script><script src="/suoliang0726.github.io/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
