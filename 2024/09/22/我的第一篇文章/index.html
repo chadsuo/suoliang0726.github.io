@@ -1,288 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>我的第一篇文章 | 我的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="欢迎来到我的博客！这是我的第一篇文章，使用 Hexo 搭建的博客。 🎉 博客功能特点 快速生成：Hexo 可以快速生成静态文件 Markdown 支持：支持 Markdown 语法编写文章 主题丰富：有丰富的主题可以选择 插件系统：强大的插件系统扩展功能  📝 常用命令创建新文章1hexo new &quot;文章标题&quot;  启动本地服务器123hexo server# 或者简写hex">
-<meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇文章">
-<meta property="og:url" content="https://chadsuo.github.io/suoliang0726.github.io/2024/09/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/index.html">
-<meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="欢迎来到我的博客！这是我的第一篇文章，使用 Hexo 搭建的博客。 🎉 博客功能特点 快速生成：Hexo 可以快速生成静态文件 Markdown 支持：支持 Markdown 语法编写文章 主题丰富：有丰富的主题可以选择 插件系统：强大的插件系统扩展功能  📝 常用命令创建新文章1hexo new &quot;文章标题&quot;  启动本地服务器123hexo server# 或者简写hex">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-09-22T10:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-21T18:19:12.345Z">
-<meta property="article:author" content="你的名字">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="技术">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/suoliang0726.github.io/atom.xml" title="我的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/suoliang0726.github.io/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/suoliang0726.github.io/css/style.css">
+extends includes/layout.pug
 
-  
-    
-<link rel="stylesheet" href="/suoliang0726.github.io/fancybox/jquery.fancybox.min.css">
+block content
+  #post
+    if top_img === false
+      include includes/header/post-info.pug
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+    article#article-container.container.post-content
+      if theme.noticeOutdate.enable && page.noticeOutdate !== false
+        include includes/post/outdate-notice.pug
+      else
+        !=page.content
+    include includes/post/post-copyright.pug
+    .tag_share
+      if (page.tags.length > 0 && theme.post_meta.post.tags)
+        .post-meta__tag-list
+          each item, index in page.tags.data
+            a(href=url_for(item.path)).post-meta__tags #[=item.name]
+      include includes/third-party/share/index.pug
 
-<meta name="generator" content="Hexo 7.3.0"></head>
+    if theme.reward.enable && theme.reward.QR_code
+      !=partial('includes/post/reward', {}, {cache: true})
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/suoliang0726.github.io/" id="logo">我的博客</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/suoliang0726.github.io/" id="subtitle">分享技术与生活</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/suoliang0726.github.io/">Home</a>
-        
-          <a class="main-nav-link" href="/suoliang0726.github.io/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/suoliang0726.github.io/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://chadsuo.github.io/suoliang0726.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
+    //- ad
+    if theme.ad && theme.ad.post
+      .ads-wrap!=theme.ad.post
 
-      <div class="outer">
-        <section id="main"><article id="post-我的第一篇文章" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/suoliang0726.github.io/2024/09/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" class="article-date">
-  <time class="dt-published" datetime="2024-09-22T10:00:00.000Z" itemprop="datePublished">2024-09-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a>
-  </div>
+    if theme.post_pagination
+      include includes/pagination.pug
+    if theme.related_post && theme.related_post.enable
+      != related_posts(page,site.posts)
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      我的第一篇文章
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="欢迎来到我的博客！"><a href="#欢迎来到我的博客！" class="headerlink" title="欢迎来到我的博客！"></a>欢迎来到我的博客！</h1><p>这是我的第一篇文章，使用 Hexo 搭建的博客。</p>
-<h2 id="🎉-博客功能特点"><a href="#🎉-博客功能特点" class="headerlink" title="🎉 博客功能特点"></a>🎉 博客功能特点</h2><ul>
-<li><strong>快速生成</strong>：Hexo 可以快速生成静态文件</li>
-<li><strong>Markdown 支持</strong>：支持 Markdown 语法编写文章</li>
-<li><strong>主题丰富</strong>：有丰富的主题可以选择</li>
-<li><strong>插件系统</strong>：强大的插件系统扩展功能</li>
-</ul>
-<h2 id="📝-常用命令"><a href="#📝-常用命令" class="headerlink" title="📝 常用命令"></a>📝 常用命令</h2><h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;文章标题&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="启动本地服务器"><a href="#启动本地服务器" class="headerlink" title="启动本地服务器"></a>启动本地服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br><span class="line"><span class="comment"># 或者简写</span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line"><span class="comment"># 或者简写</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<h3 id="部署到远程"><a href="#部署到远程" class="headerlink" title="部署到远程"></a>部署到远程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br><span class="line"><span class="comment"># 或者简写</span></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<h2 id="🚀-下一步计划"><a href="#🚀-下一步计划" class="headerlink" title="🚀 下一步计划"></a>🚀 下一步计划</h2><ol>
-<li><strong>完善博客内容</strong>：添加更多技术文章</li>
-<li><strong>优化主题配置</strong>：自定义主题样式</li>
-<li><strong>部署到 GitHub Pages</strong>：让更多人看到我的博客</li>
-<li><strong>添加评论系统</strong>：与读者互动交流</li>
-</ol>
-<h2 id="💡-学习心得"><a href="#💡-学习心得" class="headerlink" title="💡 学习心得"></a>💡 学习心得</h2><p>使用 Hexo 搭建博客的过程让我学到了：</p>
-<ul>
-<li>静态网站生成器的原理</li>
-<li>Markdown 语法的使用</li>
-<li>Git 版本控制的重要性</li>
-<li>前端部署的基本流程</li>
-</ul>
-<hr>
-<p>感谢阅读！如果你有任何问题或建议，欢迎在评论区留言。🎯</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://chadsuo.github.io/suoliang0726.github.io/2024/09/22/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" data-id="cmfu2ollm000atcpafnkp5fp1" data-title="我的第一篇文章" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/suoliang0726.github.io/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/suoliang0726.github.io/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/suoliang0726.github.io/2024/09/22/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%BF%83%E5%BE%97/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Hexo博客搭建心得
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/suoliang0726.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/">技术分享</a></li><li class="category-list-item"><a class="category-list-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E6%95%99%E7%A8%8B/">技术教程</a></li><li class="category-list-item"><a class="category-list-link" href="/suoliang0726.github.io/categories/%E6%8A%80%E6%9C%AF%E6%B5%8B%E8%AF%95/">技术测试</a></li><li class="category-list-item"><a class="category-list-link" href="/suoliang0726.github.io/categories/%E7%94%9F%E6%B4%BB%E9%9A%8F%E7%AC%94/">生活随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/suoliang0726.github.io/categories/%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/">项目分享</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/Hexo%E5%8A%9F%E8%83%BD/" rel="tag">Hexo功能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E5%86%99%E4%BD%9C/" rel="tag">写作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">前端开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="tag">学习记录</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" rel="tag">学习路线</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E6%80%9D%E8%80%83/" rel="tag">思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E6%88%90%E9%95%BF/" rel="tag">成长</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" rel="tag">技术分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" rel="tag">生活感悟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" rel="tag">程序员</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" rel="tag">自动生成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E8%AF%AD%E6%B3%95/" rel="tag">语法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" rel="tag">静态网站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/suoliang0726.github.io/tags/%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/" rel="tag">项目分享</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/suoliang0726.github.io/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/suoliang0726.github.io/tags/Hexo%E5%8A%9F%E8%83%BD/" style="font-size: 10px;">Hexo功能</a> <a href="/suoliang0726.github.io/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/suoliang0726.github.io/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/suoliang0726.github.io/tags/React/" style="font-size: 20px;">React</a> <a href="/suoliang0726.github.io/tags/Vue/" style="font-size: 10px;">Vue</a> <a href="/suoliang0726.github.io/tags/%E5%86%99%E4%BD%9C/" style="font-size: 10px;">写作</a> <a href="/suoliang0726.github.io/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 20px;">前端开发</a> <a href="/suoliang0726.github.io/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 20px;">博客</a> <a href="/suoliang0726.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">学习记录</a> <a href="/suoliang0726.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" style="font-size: 10px;">学习路线</a> <a href="/suoliang0726.github.io/tags/%E6%80%9D%E8%80%83/" style="font-size: 10px;">思考</a> <a href="/suoliang0726.github.io/tags/%E6%88%90%E9%95%BF/" style="font-size: 10px;">成长</a> <a href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 10px;">技术</a> <a href="/suoliang0726.github.io/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" style="font-size: 10px;">技术分享</a> <a href="/suoliang0726.github.io/tags/%E6%95%99%E7%A8%8B/" style="font-size: 10px;">教程</a> <a href="/suoliang0726.github.io/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/suoliang0726.github.io/tags/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%82%9F/" style="font-size: 10px;">生活感悟</a> <a href="/suoliang0726.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" style="font-size: 10px;">程序员</a> <a href="/suoliang0726.github.io/tags/%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90/" style="font-size: 10px;">自动生成</a> <a href="/suoliang0726.github.io/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 10px;">语法</a> <a href="/suoliang0726.github.io/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" style="font-size: 10px;">静态网站</a> <a href="/suoliang0726.github.io/tags/%E9%A1%B9%E7%9B%AE%E5%88%86%E4%BA%AB/" style="font-size: 10px;">项目分享</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/suoliang0726.github.io/archives/2025/09/">九月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/suoliang0726.github.io/archives/2024/09/">九月 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/suoliang0726.github.io/2025/09/22/%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8A%9F%E8%83%BD/">测试自动生成功能</a>
-          </li>
-        
-          <li>
-            <a href="/suoliang0726.github.io/2025/09/22/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/suoliang0726.github.io/2024/09/23/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAReact%E9%A1%B9%E7%9B%AE/">我的第一个React项目</a>
-          </li>
-        
-          <li>
-            <a href="/suoliang0726.github.io/2024/09/22/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">前端开发学习路线</a>
-          </li>
-        
-          <li>
-            <a href="/suoliang0726.github.io/2024/09/22/Markdown%E8%AF%AD%E6%B3%95%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/">Markdown语法完全指南</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 你的名字<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/suoliang0726.github.io/" class="mobile-nav-link">Home</a>
-  
-    <a href="/suoliang0726.github.io/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/suoliang0726.github.io/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/suoliang0726.github.io/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/suoliang0726.github.io/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+    if page.comments !== false && theme.comments.use
+      - var commentsJsLoad = true
+      !=partial('includes/third-party/comments/index', {}, {cache: true})
